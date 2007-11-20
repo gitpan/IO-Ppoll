@@ -1,0 +1,10 @@
+Build.PL
+lib/IO/Ppoll.pm
+lib/IO/Ppoll.xs
+MANIFEST			This list of files
+META.yml
+t/00use.t
+t/01handles.t
+t/02sigmask.t
+t/03poll.t
+t/04poll-sigmask.t
