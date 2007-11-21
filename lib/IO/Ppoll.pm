@@ -16,7 +16,7 @@ require POSIX;
 
 our @ISA = qw( DynaLoader Exporter );
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 our @EXPORT = qw(
    POLLIN

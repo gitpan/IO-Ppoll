@@ -1,0 +1,8 @@
+Revision history for IO-Ppoll
+
+0.02    BUGFIXES:
+         * Don't upset perl 5.6.2's POSIX::sigprocmask() by passing 'undef'
+           as oldsigmask
+
+0.01    First version, released on an unsuspecting world.
+

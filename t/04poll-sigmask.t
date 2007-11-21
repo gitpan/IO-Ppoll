@@ -17,7 +17,7 @@ kill SIGHUP, $$;
 
 is( $SIGHUP_count, 1, 'Caught SIGHUP before sigprocmask' );
 
-sigprocmask( SIG_BLOCK, POSIX::SigSet->new( SIGHUP ), undef );
+sigprocmask( SIG_BLOCK, POSIX::SigSet->new( SIGHUP ) );
 
 kill SIGHUP, $$;
 
