@@ -1,5 +1,10 @@
 Revision history for IO-Ppoll
 
+0.03    BUGFIXES:
+         * Changes to build system to detect Linux kernel version and Glibc
+           suitability.
+         * Get Module::Build to create Makefile.PL.
+
 0.02    BUGFIXES:
          * Don't upset perl 5.6.2's POSIX::sigprocmask() by passing 'undef'
            as oldsigmask

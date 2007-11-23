@@ -9,3 +9,4 @@ t/01handles.t
 t/02sigmask.t
 t/03poll.t
 t/04poll-sigmask.t
+Makefile.PL
