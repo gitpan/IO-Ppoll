@@ -38,7 +38,7 @@ END {
 }
 
 my $cc = $Config{cc};
-open( my $test_c_fh, ">", $test_c ) or die "Cannot write test.c - $!";
+open( my $test_c_fh, "> $test_c" ) or die "Cannot write test.c - $!";
 
 print $test_c_fh <<EOF;
 #include <poll.h>

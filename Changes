@@ -1,5 +1,8 @@
 Revision history for IO-Ppoll
 
+0.04    BUGFIXES:
+         * Avoid three-arg open in Build.PL to keep perl 5.5 happy
+
 0.03    BUGFIXES:
          * Changes to build system to detect Linux kernel version and Glibc
            suitability.
