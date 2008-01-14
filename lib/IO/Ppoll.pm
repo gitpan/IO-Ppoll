@@ -1,7 +1,7 @@
 #  You may distribute under the terms of either the GNU General Public License
 #  or the Artistic License (the same terms as Perl itself)
 #
-#  (C) Paul Evans, 2007 -- leonerd@leonerd.org.uk
+#  (C) Paul Evans, 2008 -- leonerd@leonerd.org.uk
 
 package IO::Ppoll;
 
@@ -16,7 +16,7 @@ require POSIX;
 
 our @ISA = qw( DynaLoader Exporter );
 
-our $VERSION = 0.04;
+our $VERSION = 0.05;
 
 our @EXPORT = qw(
    POLLIN
@@ -151,7 +151,10 @@ sub poll
    my $self = shift;
    my ( $timeout ) = @_;
 
-   return do_poll( $self->{fds}, $self->{nfds}, $timeout * 1000, $self->{sigmask} );
+   # do_poll wants timeout in miliseconds
+   $timeout *= 1000 if defined $timeout;
+
+   return do_poll( $self->{fds}, $self->{nfds}, $timeout, $self->{sigmask} );
 }
 
 =head2 $bits = $ppoll->events( $handle )

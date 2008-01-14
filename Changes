@@ -1,5 +1,8 @@
 Revision history for IO-Ppoll
 
+0.05    BUGFIXES:
+         * Make sure that ->poll( undef ) works and doesn't throw a warning
+
 0.04    BUGFIXES:
          * Avoid three-arg open in Build.PL to keep perl 5.5 happy
 

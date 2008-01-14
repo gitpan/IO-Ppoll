@@ -1,6 +1,6 @@
 ---
 name: IO-Ppoll
-version: 0.04
+version: 0.05
 author:
   - 'Paul Evans E<lt>leonerd@leonerd.org.ukE<gt>'
 abstract: Object interface to Linux's C<ppoll()> call
@@ -13,7 +13,7 @@ build_requires:
 provides:
   IO::Ppoll:
     file: lib/IO/Ppoll.pm
-    version: 0.04
+    version: 0.05
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
