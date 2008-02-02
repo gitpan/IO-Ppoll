@@ -2,7 +2,7 @@
 
 use strict;
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 use IO::Ppoll qw( POLLIN POLLOUT POLLHUP );
 
@@ -17,5 +17,6 @@ is( $ret, 1, 'ppoll returned 1' );
 
 is( $ppoll->events( \*STDIN ),  0,       'STDIN events' );
 is( $ppoll->events( \*STDOUT ), POLLOUT, 'STDOUT events' );
+is( $ppoll->events( \*STDERR ), '',      'STDERR events' );
 
 is_deeply( [ $ppoll->handles( POLLOUT ) ], [ \*STDOUT ], 'handles(POLLOUT)' );

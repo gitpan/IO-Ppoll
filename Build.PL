@@ -69,6 +69,7 @@ my $build = Module::Build->new
                },
    build_requires => {
                  'Module::Build' => 0,
+                 'Module::Build::Compat' => 0,
                  'Test::More' => 0,
                },
    license => 'perl',

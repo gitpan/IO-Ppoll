@@ -1,5 +1,9 @@
 Revision history for IO-Ppoll
 
+0.06    BUGFIXES:
+         * Better compatibility with IO::Poll; return false from ->events when
+           given an unknown handle, rather than undef
+
 0.05    BUGFIXES:
          * Make sure that ->poll( undef ) works and doesn't throw a warning
 

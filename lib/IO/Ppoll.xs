@@ -33,15 +33,11 @@ get_events(fds, nfds, fd)
     struct pollfd *fds_real;
   CODE:
     fds_real = (struct pollfd *)SvPV_nolen(fds);
-    ST(0) = sv_newmortal();
     for(i = 0; i < nfds; i++) {
-      if(fds_real[i].fd == fd) {
-        sv_setiv(ST(0), fds_real[i].events);
-        break;
-      }
+      if(fds_real[i].fd == fd)
+        XSRETURN_IV(fds_real[i].events);
     }
-    if(i == nfds)
-      ST(0) = &PL_sv_undef;
+    XSRETURN_NO;
 
 int
 get_revents(fds, nfds, fd)
@@ -53,15 +49,11 @@ get_revents(fds, nfds, fd)
     struct pollfd *fds_real;
   CODE:
     fds_real = (struct pollfd *)SvPV_nolen(fds);
-    ST(0) = sv_newmortal();
     for(i = 0; i < nfds; i++) {
-      if(fds_real[i].fd == fd) {
-        sv_setiv(ST(0), fds_real[i].revents);
-        break;
-      }
+      if(fds_real[i].fd == fd)
+        XSRETURN_IV(fds_real[i].revents);
     }
-    if(i == nfds)
-      ST(0) = &PL_sv_undef;
+    XSRETURN_NO;
 
 void
 get_fds(fds, nfds)
@@ -75,7 +67,7 @@ get_fds(fds, nfds)
     EXTEND(SP, nfds);
     for(i = 0; i < nfds; i++) {
       int fd = fds_real[i].fd;
-      PUSHs(sv_2mortal(newSViv(fd)));
+      mPUSHi(fd);
     }
 
 void
@@ -94,7 +86,7 @@ get_fds_for(fds, nfds, events)
       if((fds_real[i].revents & events) == 0)
         continue;
       fd = fds_real[i].fd;
-      PUSHs(sv_2mortal(newSViv(fd)));
+      mPUSHi(fd);
     }
 
 void
