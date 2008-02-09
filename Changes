@@ -1,5 +1,9 @@
 Revision history for IO-Ppoll
 
+0.07    BUGFIXES:
+         * Support perls older than 5.8 which don't have mPUSHi by #defining
+           it
+
 0.06    BUGFIXES:
          * Better compatibility with IO::Poll; return false from ->events when
            given an unknown handle, rather than undef

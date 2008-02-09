@@ -1,7 +1,7 @@
 /*  You may distribute under the terms of either the GNU General Public License
  *  or the Artistic License (the same terms as Perl itself)
  *
- *  (C) Paul Evans, 2007 -- leonerd@leonerd.org.uk
+ *  (C) Paul Evans, 2007,2008 -- leonerd@leonerd.org.uk
  */
 
 #include "EXTERN.h"
@@ -9,6 +9,18 @@
 #include "XSUB.h"
 
 #include "poll.h"
+
+/* mPUSHi is a 5.8 thing. We'll have to define it ourselves to support older
+ * perls
+ */
+
+#ifndef PUSHmortal
+#  define PUSHmortal                     PUSHs(sv_newmortal())
+#endif
+
+#ifndef mPUSHi
+#  define mPUSHi(i)                      sv_setiv_mg(PUSHmortal, (IV)(i))
+#endif
 
 MODULE = IO::Ppoll      PACKAGE = IO::Ppoll
 
