@@ -1,5 +1,12 @@
 Revision history for IO-Ppoll
 
+0.08    BUGFIXES:
+         * Fix off-by-one error when removing an fd which causes an
+           uninitialised pollfd element to enter the set instead
+         * Use dedicated pipe in test script rather than STDIN/STDOUT, which
+           the containing test system may have altered in ways that make our
+           test fail
+
 0.07    BUGFIXES:
          * Support perls older than 5.8 which don't have mPUSHi by #defining
            it

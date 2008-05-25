@@ -142,7 +142,7 @@ del_events(fds, nfds, fd)
       if(fds_real[i].fd == fd) {
         /* Since we don't care about the ordering here, just move the
          * top one down */
-        fds_real[i]= fds_real[nfds];
+        fds_real[i] = fds_real[nfds-1];
         nfds--;
         SvCUR_set(fds, nfds * sizeof(struct pollfd));
         break;
