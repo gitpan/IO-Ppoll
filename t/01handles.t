@@ -9,7 +9,7 @@ use IO::Ppoll qw( POLLIN POLLHUP );
 my $ppoll = IO::Ppoll->new();
 
 ok( defined $ppoll, 'defined $ppoll' );
-is( ref $ppoll, "IO::Ppoll", 'ref $ppoll is IO::Ppoll' );
+isa_ok( $ppoll, "IO::Ppoll", '$ppoll isa IO::Ppoll' );
 
 is_deeply( [ $ppoll->handles ], [], 'handles when empty' );
 

@@ -1,5 +1,10 @@
 Revision history for IO-Ppoll
 
+0.09    CHANGES:
+         * Added 'use warnings'
+         * Some documentation fixes
+         * Varions small updates to keep CPANTS happy
+
 0.08    BUGFIXES:
          * Fix off-by-one error when removing an fd which causes an
            uninitialised pollfd element to enter the set instead

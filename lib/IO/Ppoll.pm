@@ -1,11 +1,12 @@
 #  You may distribute under the terms of either the GNU General Public License
 #  or the Artistic License (the same terms as Perl itself)
 #
-#  (C) Paul Evans, 2008 -- leonerd@leonerd.org.uk
+#  (C) Paul Evans, 2008,2009 -- leonerd@leonerd.org.uk
 
 package IO::Ppoll;
 
 use strict;
+use warnings;
 
 use Carp;
 
@@ -16,7 +17,7 @@ require POSIX;
 
 our @ISA = qw( DynaLoader Exporter );
 
-our $VERSION = 0.08;
+our $VERSION = '0.09';
 
 our @EXPORT = qw(
    POLLIN
@@ -37,7 +38,7 @@ C<IO::Ppoll> - Object interface to Linux's C<ppoll()> call
  use IO::Ppoll qw( POLLIN POLLOUT );
  use POSIX qw( sigprocmask SIG_BLOCK SIGHUP );
 
- my $ppoll = IO::Poll->new();
+ my $ppoll = IO::Ppoll->new();
  $ppoll->mask( $input_handle => POLLIN );
  $ppoll->mask( $output_handle => POLLOUT );
 
@@ -53,15 +54,13 @@ C<IO::Ppoll> - Object interface to Linux's C<ppoll()> call
 
 C<IO::Ppoll> is a simple interface to Linux's C<ppoll()> system call. It
 provides an interface that is drop-in compatible with L<IO::Poll>. The object
-itself stores a signal mask that will be in effect during the actual
-C<ppoll()> system call and has additional methods for manipulating the signal
-mask.
+stores a signal mask that will be in effect during the actual C<ppoll()>
+system call and has additional methods for manipulating the signal mask.
 
-The C<ppoll()> system call itself atomically switches the process's signal
-mask to that provided by the call, waits identically to C<poll()>, then
-switches it back again. This allows a program to safely wait on either file
-handle IO or signals, without needing such tricks as a self-connected pipe or
-socket.
+The C<ppoll()> system call atomically switches the process's signal mask to
+that provided by the call, waits identically to C<poll()>, then switches it
+back again. This allows a program to safely wait on either file handle IO or
+signals, without needing such tricks as a self-connected pipe or socket.
 
 The usual way in which this is used is to block the signals the application is
 interested in during the normal running of code. Whenever the C<ppoll()> wait
@@ -139,10 +138,11 @@ sub mask
 
 =head2 $ret = $ppoll->poll( $timeout )
 
-Call the C<ppoll> system call. If C<$timeout> is not supplied then no timeout
-value will be passed to the system call. Returns the result of the system call
-which is the number of filehandles that have non-zero events, 0 on timeout, or
--1 if an error occurred (including being interrupted by a signal).
+Call the C<ppoll()> system call. If C<$timeout> is not supplied then no
+timeout value will be passed to the system call. Returns the result of the
+system call, which is the number of filehandles that have non-zero events, 0
+on timeout, or -1 if an error occurred (including being interrupted by a
+signal). If -1 is returned, C<$!> will contain the error.
 
 =cut
 
@@ -306,8 +306,12 @@ L<IO::Poll> - Object interface to system poll call
 
 C<ppoll(2)> - wait for some event on a file descriptor (Linux manpages)
 
+=item *
+
+L<IO::Async::Loop::IO_Ppoll> - a Loop using an IO::Ppoll object
+
 =back
 
 =head1 AUTHOR
 
-Paul Evans E<lt>leonerd@leonerd.org.ukE<gt>
+Paul Evans <leonerd@leonerd.org.uk>
