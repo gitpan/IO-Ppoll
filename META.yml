@@ -1,21 +1,25 @@
 ---
-name: IO-Ppoll
-version: 0.09
+abstract: "Object interface to Linux's C<ppoll()> call"
 author:
   - 'Paul Evans <leonerd@leonerd.org.uk>'
-abstract: Object interface to Linux's C<ppoll()> call
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
 build_requires:
+  ExtUtils::CBuilder: 0
   Module::Build: 0
   Module::Build::Compat: 0
   Test::More: 0
-provides:
-  IO::Ppoll:
-    file: lib/IO/Ppoll.pm
-    version: 0.09
-generated_by: Module::Build version 0.33
+configure_requires:
+  ExtUtils::CChecker: 0
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3601'
+license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
+name: IO-Ppoll
+provides:
+  IO::Ppoll:
+    file: lib/IO/Ppoll.pm
+    version: 0.10
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.10

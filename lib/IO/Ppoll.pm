@@ -10,15 +10,9 @@ use warnings;
 
 use Carp;
 
-require DynaLoader;
-require Exporter;
+our $VERSION = '0.10';
 
-require POSIX;
-
-our @ISA = qw( DynaLoader Exporter );
-
-our $VERSION = '0.09';
-
+use Exporter 'import';
 our @EXPORT = qw(
    POLLIN
    POLLOUT
@@ -27,7 +21,10 @@ our @EXPORT = qw(
    POLLNVAL
 );
 
-bootstrap IO::Ppoll $VERSION;
+require POSIX;
+
+require XSLoader;
+XSLoader::load( __PACKAGE__, $VERSION );
 
 =head1 NAME
 
