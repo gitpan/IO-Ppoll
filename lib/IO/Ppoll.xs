@@ -183,8 +183,12 @@ do_poll(fds, nfds, timeout, sigmask)
 
     if(SvOK(sigmask)) {
       /* This code borrowed from POSIX.xs */
+#if PERL_VERSION > 15 || PERL_VERSION == 15 && PERL_SUBVERSION > 2
+      sigmask_real = (sigset_t *) SvPV_nolen(SvRV(sigmask));
+#else
       IV tmp = SvIV((SV*)SvRV(sigmask));
       sigmask_real = INT2PTR(sigset_t*, tmp);
+#endif
     }
     else
       sigmask_real = NULL;

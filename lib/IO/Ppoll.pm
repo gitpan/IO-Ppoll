@@ -10,7 +10,7 @@ use warnings;
 
 use Carp;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Exporter 'import';
 our @EXPORT = qw(
@@ -286,11 +286,6 @@ sub sigmask_ismember
    return $self->{sigmask}->ismember( $signal );
 }
 
-# Keep perl happy; keep Britain tidy
-1;
-
-__END__
-
 =head1 SEE ALSO
 
 =over 4
@@ -312,3 +307,7 @@ L<IO::Async::Loop::IO_Ppoll> - a Loop using an IO::Ppoll object
 =head1 AUTHOR
 
 Paul Evans <leonerd@leonerd.org.uk>
+
+=cut
+
+0x55AA;

@@ -23,8 +23,10 @@ my $build = Module::Build->new(
    dist_version_from => 'lib/IO/Ppoll.pm',
    configure_requires => {
       'ExtUtils::CChecker' => 0,
+      'Module::Build' => 0,
    },
    requires => {
+      'Exporter' => '5.57',
    },
    build_requires => {
       'Module::Build' => 0,
@@ -36,5 +38,5 @@ my $build = Module::Build->new(
    create_license => 1,
    create_readme  => 1,
 );
-  
+
 $build->create_build_script;

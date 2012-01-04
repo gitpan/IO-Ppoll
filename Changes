@@ -1,5 +1,9 @@
 Revision history for IO-Ppoll
 
+0.11    BUGFIXES:
+         * Apply Nicholas Clark's patch to fix for current bleadperl (5.15.3)
+           (RT73665)
+
 0.10    CHANGES:
          * Use XSLoader instead of DynaLoader
          * import Exporter::import instead of @ISAing it
